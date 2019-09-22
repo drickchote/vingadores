@@ -1,0 +1,154 @@
+html{
+	width: 100%;
+}
+ul { 
+	list-style-type: none;
+	margin: 0px; 
+	padding: 10px;
+	overflow: hidden; 
+
+}
+li {
+	font-size: 25pt; 
+	float: left; 
+	}                  /* Faz com que os blocos fiquem um ao lado do outro */
+li a { 
+	display: block; /* Faz com que todo o bloco seja um link */
+	text-decoration: none; /* Remove a aparência de link */
+	color: white; 
+	padding: 10px 20px;
+}
+li a:hover { 
+	background-color: white;
+ 	color: blue;
+}
+body{
+	margin: 10px 10px 10px 10px;
+	background-color: #1d225d;
+}
+header{
+	display: block;
+	height: 500px;
+	
+}
+.imagem{
+	height: 400px;
+	background-image: url(menu.jpg);
+	background-position: left bottom;
+	background-repeat: no-repeat;
+	background-size: contain;
+
+}
+#nav{
+	margin: 0px 0px 0px 10px;
+}
+#menu{
+	border: none;
+	display: inline;
+	height: 80px;
+	width: 100%;
+	position: relative;
+	top: 330px;
+}
+#tela{
+	display: flex;
+	justify-content: center;
+	background-color: #989cca;
+	flex-wrap: wrap;
+}
+#corpo{
+	display: block;
+	font-size: 18pt; 
+	background-color: #989cca;
+	position: relative;
+	top: 0px;
+}
+h4{
+	font-size: 30pt;
+	padding: 10px;
+	margin: 5px;
+}
+p{
+	margin: 15px;
+	text-indent: 50px;
+	position: relative;
+	bottom: 15px;
+}
+table { 
+	border-collapse: collapse;
+	}
+
+
+table.membros{
+	position: relative;
+	bottom: 15px;
+}
+table.membros th, td{ 
+	width: 250px;
+	border: 1px solid black; /* Config. da borda da tabela */
+	text-align: center; /* Alinhamento da tabela */
+}
+table.membros tr:nth-child(odd){ 
+	background-color: #1d225d; 
+	color: white;
+	font-size: 15pt; 
+	}
+table.filmes{
+	margin: 15px 15px 0px 15px;
+	position: relative;
+	bottom: 15px;
+}
+table.filmes th, td{
+	border: 1px solid black; /* Config. da borda da tabela */
+}
+table.filmes th{
+	background-color: #1d225d; 
+	color: white;
+}
+.filme{
+	width: 10%;
+}
+.descricao{
+	width: 50%;
+}
+img{
+	max-width: 100%;
+}
+iframe{
+	max-width: 100%;
+}
+.loc{	
+	position: relative;
+	left: 20px;
+	bottom: 15px;
+	
+}
+.noticias{
+	max-width: 100%;
+	width: 96%;
+	position: relative;
+	left: 20px;
+}
+
+.item img{
+	width: 200px;
+	height: 200px;
+
+}
+
+.container{
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#contador{
+	font-size: 100px;
+	position: fixed;
+	left: 30%;
+	top: 50%;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	width: 500px;
+}
