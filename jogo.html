@@ -6,11 +6,23 @@
 	</head>
 	<body>
         <div>
+            
             <div class="imagem">
                 <iframe id="menu" src="header.html" scrolling="no"></iframe>
             </div>
-            <h4> Jogo </h4> 
             <section id="tela" class="container">
+                <div id="informacoes">
+                    <h4 id="nomeJogador" class="item">Jogador: Marcos</h4>
+                    <h4 id="tempo" class="item">Tempo: 00:00</h4>
+                    <h4 id="pontuacao" class="item">Pontuação: 0</h4>
+                </div> 
+                <div id="insercaoNome">
+                    <div id="conteudoNome">
+                        <h4>Insira o seu nome</h4>
+                        <input id="nomeInput" type="text" maxlength="20">
+                        <button id="nomeBotao" onclick="salvarNome()">Salvar</button>
+                    </div>
+                </div>   
                 
             </section>
         </div>
