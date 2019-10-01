@@ -1,30 +1,12 @@
 let n = 10;
-let pontuacao = 0;
-
-let tempo = {
-    minutos:0,
-    segundos:0,
-    aumentaSegundo(){
-        this.segundos++;        
-        if(this.segundos==60){
-            this.segundos = 0;
-            this.minutos++;
-        }
-        let segundosEscrito = this.segundos>9 ? this.segundos : "0"+this.segundos;
-        let minutosEscrito = this.minutos>9? this.minutos : "0"+this.minutos;
-        document.getElementById("tempo").innerText = "Tempo:"+minutosEscrito+":"+segundosEscrito;
-    }
-}
-//vetores usados para diferenciar cartas iguais
-vingadores1 = ["thor1","homemdeferro1", "viuva1", "gaviao1", "capitao1", "hulk1","feiticeira1", "aranha1", "capita1", "dr1"];
-vingadores2 = ["thor2","homemdeferro2", "viuva2", "gaviao2", "capitao2", "hulk2","feiticeira2", "aranha2", "capita2", "dr2"];
+let pontuacao = 0; //acertos
+let tentativas = 0; //acertos + erros
+let jogoIniciado = false;
+let tempo;
+let random; // vetor com personagens aleatorios
 
 
-// concatena os dois vetores, spread / rest operator
-vingadores = [...vingadores1,...vingadores2];
-
-
-
+/* chamado ao clicar em "salvar" o nome para iniciar o jogo */
 function salvarNome(){
     let caixa = document.getElementById("informacoes");
     let nomeInput = document.getElementById("nomeInput");
@@ -39,6 +21,25 @@ function salvarNome(){
     }
 }
 
+//mostra a tela de inserir o nome para iniciar um novo jogo
+function telaDeInicio(){
+    let telaInsercaoNome = document.getElementById("insercaoNome");
+    let nomeInput = document.getElementById("nomeInput");
+    nomeInput.innerText = "";
+    telaInsercaoNome.style.display = "flex";
+}
+
+function mostrarMensagem(mensagem, tipo){
+    let caixa = document.getElementById("caixaMensagem");
+    let background = tipo == "acertou" ? "#00FF00" : tipo == "errou" ? "#ffffcc" : "#f44336";
+    caixa.innerText= mensagem;
+
+    caixa.style.background = background;
+    caixa.style.display = "block";
+    setTimeout(()=>{
+        caixa.style.display="none"
+    }, 2000);
+}
 
 //recebe um vetor e retorna o mesmo com posições aleatórias
 function retornaAleatorio(vetor) {
@@ -52,8 +53,85 @@ function retornaAleatorio(vetor) {
     return vetor;
 }
 
+//vetores usados para diferenciar cartas iguais
+let vingadores1 = ["thor1","homemdeferro1", "viuva1", "gaviao1", "capitao1", "hulk1","feiticeira1", "aranha1", "capita1", "dr1"];
+let vingadores2 = ["thor2","homemdeferro2", "viuva2", "gaviao2", "capitao2", "hulk2","feiticeira2", "aranha2", "capita2", "dr2"];
+
+function mostrarRanking(){
+    let cookie =  document.cookie.split('; ').map(jogador=>{
+        if(jogador.split('=')[0].substring(0,"jogador".length)=="jogador"){
+            let nome = jogador.split('=')[1].split(',')[0];
+            let segundos = jogador.split('=')[1].split(',')[1];
+            let tempo = jogador.split('=')[1].split(',')[2];
+            let taxaAcerto = jogador.split('=')[1].split(',')[3];
+            return {nome:nome, segundos:segundos, tempo: tempo, taxaAcerto: taxaAcerto};
+        }   
+    });
+    /* retorna todas as posições do cookie que não são undefined */
+    let todosJogadores = cookie.filter(posicao=>posicao);
+    let jogadoresOrdenados = todosJogadores.sort((a, b) => (a.segundos > b.segundos) ? 1 : -1)
+    debugger;
+}
+
+function excluirRanking(){
+    document.cookie.split('; ').map((jogador)=>{
+        if(jogador.split('=')[0].substring(0,"jogador".length)=="jogador"){
+            document.cookie = jogador.split('=')[0]+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+        }
+    })
+}
+
+function novoJogo(){
+    n = 10;
+    zerarPontuacao();
+    tentativas = 0; //acertos + erros
+    jogoIniciado = false;
+    document.getElementById("score").style.display = "none";
+
+    tempo = {
+        minutos:0,
+        segundos:0,
+        segundosTotal:0,
+        aumentaSegundo(){
+            this.segundos++;
+            this.segundosTotal++;        
+            if(this.segundos==60){
+                this.segundos = 0;
+                this.minutos++;
+            }
+            let segundosEscrito = this.segundos>9 ? this.segundos : "0"+this.segundos;
+            let minutosEscrito = this.minutos>9? this.minutos : "0"+this.minutos;
+            document.getElementById("tempo").innerText = "Tempo:"+minutosEscrito+":"+segundosEscrito;
+        }
+    }
+    // concatena os dois vetores, spread / rest operator
+    vingadores = [...vingadores1,...vingadores2];
+    //guarda o vetor com elementos aleatorios
+    random = retornaAleatorio(vingadores);
+
+    // auxiliar usado para saber quais vingadores já foram achados
+    selecionados = [...random]; 
+    telaDeInicio();
+}
+novoJogo();
+
 function fimDeJogo(){
-    alert("Você venceu!");
+
+    let score = document.getElementById("score");
+    let scoreNome = document.getElementById("nomeJogador").innerText;
+    scoreNome = scoreNome.substring(9,scoreNome.length);
+    let scoreTempo =  document.getElementById("tempo").innerText;
+    scoreTempo = scoreTempo.substring(7,scoreTempo.length);
+    let scoreTentativas = tentativas;
+    let scoreTaxaAcerto = (pontuacao/tentativas)*100+"%";
+
+    document.getElementById("scoreNome").innerText = scoreNome;
+    document.getElementById("scoreTempo").innerText = scoreTempo;
+    document.getElementById("scoreTentativas").innerText = scoreTentativas;
+    document.getElementById("scoreTaxaAcerto").innerText = scoreTaxaAcerto;
+    let quantJogadores = document.cookie.split(';').length;
+    document.cookie = "jogador"+quantJogadores+"="+scoreNome+","+tempo.segundosTotal+","+scoreTempo+","+scoreTaxaAcerto+"; expires= Thu, 31 Dec 2020 23:59:59 UTC";
+    score.style.display = "flex";    
 }
 
 function aumentarPontuacao(){
@@ -61,11 +139,12 @@ function aumentarPontuacao(){
     document.getElementById("pontuacao").innerText = "Pontuacao: "+pontuacao;
 }
 
-//guarda o vetor com elementos aleatorios
-let random = retornaAleatorio(vingadores);
+function zerarPontuacao(){
+    pontuacao=0;
+    document.getElementById("pontuacao").innerText = "Pontuacao: "+pontuacao;
+}
 
-// auxiliar usado para saber quais vingadores já foram achados
-selecionados = [...random]; 
+
 
 // salva o nome da primeira carta de cada rodada
 let primeiroBotao = null;
@@ -74,6 +153,9 @@ let segundoBotao = null
 let segundoSelecionado = null;
 
 let seleciona = function seleciona(oEvent){
+    if(!jogoIniciado){
+        return;
+    }
     let botaoClicado = oEvent.currentTarget;
     // botaoClicado.disabled = true;
     let imagem = botaoClicado.firstChild; 
@@ -89,7 +171,7 @@ let seleciona = function seleciona(oEvent){
     let indexvingadorSelecionadoVetorSelecionados = selecionados.indexOf(vingadorSelecionado);
     
     if(indexvingadorSelecionadoVetorSelecionados==-1){
-        alert("Essa opcao já foi selecionada");
+        mostrarMensagem("Essa opcao já está virada", "alerta");
         botaoClicado.disabled = false;
     } else{
         imagem.src = "imagens/"+vingadorSelecionado.substring(0,vingadorSelecionado.length-1)+".jpg";
@@ -106,15 +188,16 @@ let seleciona = function seleciona(oEvent){
         if(primeiroSelecionado){
 
             if(vingadorSelecionado === primeiroSelecionado){
-                alert("Você não pode selecionar o mesmo duas vezes");
+                mostrarMensagem("Selecione uma imagem diferente", "alerta");
             } else {
                 segundoBotao = botaoClicado;
                 segundoSelecionado = vingadorSelecionado;
                 let nomeAtual = segundoSelecionado.substring(0,vingadorSelecionado.length-1);
                 let nomePrimeiro = primeiroSelecionado.substring(0,primeiroSelecionado.length-1);
                 if(nomeAtual === nomePrimeiro){
-                    console.log("Você acertou!");
+                    mostrarMensagem("Você acertou!", "acertou");
                     aumentarPontuacao();
+                    tentativas++;
                     selecionados.splice(indexvingadorSelecionadoVetorSelecionados, 1);
                     let indexPrimeiroSelecionado = selecionados.indexOf(primeiroSelecionado);
                     selecionados.splice(indexPrimeiroSelecionado,1);
@@ -126,7 +209,8 @@ let seleciona = function seleciona(oEvent){
                         fimDeJogo();
                     }
                 } else{
-                    console.log("você errou");
+                    mostrarMensagem("Você errou!", "errou");
+                    tentativas++;
                     var resetaCartas = setTimeout(()=>{
                         if(segundoSelecionado && botaoClicado.firstChild.src !="http://127.0.0.1:5500/imagens/interrogacao.jpg"){
                             botaoClicado.firstChild.src = "imagens/interrogacao.jpg";
@@ -154,12 +238,13 @@ let seleciona = function seleciona(oEvent){
 
 for(i=0; i<random.length; i++){
     let botao = document.createElement("button");
+    botao.disabled = true;
     let imagem = document.createElement("img");
     imagem.id = "vingador"+i;
     imagem.src="imagens/interrogacao.jpg";
     botao.classList.add("item");
     botao.onclick=seleciona;
-    botao.disabled = true;
+   
     botao.appendChild(imagem)
     let tela = document.getElementById('tela');
     tela.appendChild(botao);
@@ -200,7 +285,6 @@ function inicio(){
 
     let intervalo = setInterval(()=>{
         if(contador.lastChild.innerHTML!="1"){
-            console.log(contador.lastChild.innerHTML);
             contador.lastChild.innerHTML--;
         } else{
             contador.lastChild.innerHTML = "Começou !";
@@ -213,12 +297,19 @@ function inicio(){
         for(i=0; i<random.length; i++){
             vingador = document.getElementById("vingador"+i);
             vingador.src="imagens/interrogacao.jpg";
-            vingador.parentElement.disabled = false;
+            // vingador.parentElement.disabled = false; ?
         }
-        setInterval(() => {
+
+        jogoIniciado = true;
+        let intervalo = setInterval(() => {
+            if(pontuacao==10){
+                clearInterval(intervalo);
+            }
             tempo.aumentaSegundo();
         }, 1000);
+        intervalo;
     }, 6000);
+ 
 
 }
 

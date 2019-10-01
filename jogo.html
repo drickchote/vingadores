@@ -12,9 +12,10 @@
             </div>
             <section id="tela" class="container">
                 <div id="informacoes">
-                    <h4 id="nomeJogador" class="item">Jogador: Marcos</h4>
+                    <h4 id="nomeJogador" class="item">Jogador:</h4>
                     <h4 id="tempo" class="item">Tempo: 00:00</h4>
                     <h4 id="pontuacao" class="item">Pontuação: 0</h4>
+                    <button id="ranking" onClick="mostrarRanking()">Ranking</button>
                 </div> 
                 <div id="insercaoNome">
                     <div id="conteudoNome">
@@ -23,6 +24,34 @@
                         <button id="nomeBotao" onclick="salvarNome()">Salvar</button>
                     </div>
                 </div>   
+                <div id="caixaMensagem">
+                    
+                </div>
+
+                <div id="score">
+                    <h2>Você venceu!</h2>
+                    <div>
+                    <h3>Nome:</h3>
+                    <p id="scoreNome"></p>
+                    </div>
+                    <div class="flex">
+                    <h3>Tempo:</h3>
+                    <p id="scoreTempo"></p>
+                    </div>
+                    <div class="flex">
+                    <h3>Tentativas:</h3>
+                    <p id="scoreTentativas"></p>
+                    </div>
+                    <div class="flex">
+                    <h3>Taxa de acerto:</h3>
+                    <p id="scoreTaxaAcerto"></p>
+                    </div>
+                    <div id="scoreButoes" class="flex">
+                        <button onclick="novoJogo()">Novo Jogo</button>
+                        <button>Ver ranking</button>
+                        <a href="index.html"><button>Sair</button></a>
+                    </div>
+                </div>
                 
             </section>
         </div>

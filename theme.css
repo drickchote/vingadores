@@ -70,7 +70,6 @@ h4{
 }
 p{
 	margin: 15px;
-	text-indent: 50px;
 	position: relative;
 	bottom: 15px;
 }
@@ -142,6 +141,7 @@ iframe{
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 50px;
+	border-radius: 10px;
 }
 
 #contador{
@@ -175,7 +175,8 @@ h4{
 
 #insercaoNome{
 	position: fixed;
-	left: 30%;
+	margin-right: auto;
+	margin-left: auto;
 	top: 30%;
 	text-align: center;
 	margin: 0;
@@ -183,9 +184,9 @@ h4{
 	width: 50%;
 	height: 300px;
 	color: #FFF;
-	background:#989cca;
+	background:#666;
 	border-radius: 10px;
-	display: flex;
+	display: none;
 	justify-content: center;
 	align-items: center;
 }
@@ -194,4 +195,70 @@ h4{
 	border-radius: 5px;
 	width: 60%;
 	height: 20px;
+}
+
+#caixaMensagem{
+	position: fixed;
+	margin-left: auto;
+	margin-right: auto;
+	top: 80%;
+	width: auto;
+	height: auto;
+	background: #00FF00;
+	border-radius: 10px;
+	text-align: center;
+	opacity: 1;
+	padding: 15px;
+	display: none;
+	font-size: 30px;
+}
+
+#score{
+	position: fixed;
+	margin-right: auto;
+	margin-left: auto;
+	top: 10%;
+	text-align: center;
+	margin: 0;
+	padding: 10px;
+	width: 50%;
+	height: auto;
+	color: #FFF;
+	background:rgb(89, 197, 89);
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	display	: flex;
+}
+
+#scoreButoes{
+	justify-content: space-between;
+	width: 100%;
+}
+#scoreButoes button{
+	margin-left: 10px;
+	margin-right: 10px;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+#score div{
+	justify-content: center;
+}
+
+#score h4{
+	color: black;
+}
+
+#ranking{
+	padding: 10px;
+	height: auto;
+	min-width: auto;
+	position: fixed;
+	left: 10px;
+	top: 90vh;
+	font-size: 25px;
+	border-radius: 10px;
 }
