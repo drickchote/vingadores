@@ -69,8 +69,41 @@ function mostrarRanking(){
     });
     /* retorna todas as posições do cookie que não são undefined */
     let todosJogadores = cookie.filter(posicao=>posicao);
-    let jogadoresOrdenados = todosJogadores.sort((a, b) => (a.segundos > b.segundos) ? 1 : -1)
-    debugger;
+    let jogadoresOrdenados = todosJogadores.sort((a, b) => (a.segundos > b.segundos) ? 1 : -1);
+    
+    let tabela = document.getElementById("rankingBody");
+    tabela.innerHTML="";
+    let posicao = 0;
+    jogadoresOrdenados.map(jogador=>{
+        posicao++;
+        if(posicao<10){
+            let colunaPosicao = document.createElement("td");
+            colunaPosicao.appendChild(document.createTextNode(posicao));
+            let colunaNome = document.createElement("td");
+            colunaNome.appendChild(document.createTextNode(jogador.nome));
+            let colunaTempo = document.createElement("td");
+            colunaTempo.appendChild(document.createTextNode(jogador.tempo));
+            let colunaTaxaAcerto = document.createElement("td");
+            colunaTaxaAcerto.appendChild(document.createTextNode(jogador.taxaAcerto));
+            let row = document.createElement("tr");
+            row.appendChild(colunaPosicao);
+            row.appendChild(colunaNome);
+            row.appendChild(colunaTempo);
+            row.appendChild(colunaTaxaAcerto);
+            tabela.appendChild(row);
+        }
+    });
+    // Caso a tabela esteja vazia
+    if(posicao == 0){
+        let coluna = document.createElement("td");
+        let row = document.createElement("tr");
+        coluna.colSpan = 4;
+        coluna.appendChild(document.createTextNode("Não há registros de pontuação"));
+        row.appendChild(coluna);
+        tabela.appendChild(row);
+    }
+    document.getElementById("modal").style.display = "block";
+
 }
 
 function excluirRanking(){
@@ -79,6 +112,7 @@ function excluirRanking(){
             document.cookie = jogador.split('=')[0]+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
         }
     })
+    mostrarRanking();
 }
 
 function novoJogo(){
@@ -123,7 +157,7 @@ function fimDeJogo(){
     let scoreTempo =  document.getElementById("tempo").innerText;
     scoreTempo = scoreTempo.substring(7,scoreTempo.length);
     let scoreTentativas = tentativas;
-    let scoreTaxaAcerto = (pontuacao/tentativas)*100+"%";
+    let scoreTaxaAcerto =((pontuacao/tentativas)*100).toFixed(2)+"%";
 
     document.getElementById("scoreNome").innerText = scoreNome;
     document.getElementById("scoreTempo").innerText = scoreTempo;
@@ -174,10 +208,9 @@ let seleciona = function seleciona(oEvent){
         mostrarMensagem("Essa opcao já está virada", "alerta");
         botaoClicado.disabled = false;
     } else{
-        imagem.src = "imagens/"+vingadorSelecionado.substring(0,vingadorSelecionado.length-1)+".jpg";
         if(segundoSelecionado){
-            segundoBotao.firstChild.src = "imagens/interrogacao.jpg";
-            primeiroBotao.firstChild.src = "imagens/interrogacao.jpg";
+            segundoBotao.firstChild.src = "imagens/jogo/interrogacao.jpg";
+            primeiroBotao.firstChild.src = "imagens/jogo/interrogacao.jpg";
             primeiroSelecionado = null;
             primeiroBotao = null;
             segundoSelecionado = null;
@@ -185,10 +218,11 @@ let seleciona = function seleciona(oEvent){
             clearTimeout(resetaCartas);
             
         }
+        imagem.src = "imagens/jogo/"+vingadorSelecionado.substring(0,vingadorSelecionado.length-1)+".jpg";
         if(primeiroSelecionado){
 
             if(vingadorSelecionado === primeiroSelecionado){
-                mostrarMensagem("Selecione uma imagem diferente", "alerta");
+                mostrarMensagem("Selecione outro não virado", "alerta");
             } else {
                 segundoBotao = botaoClicado;
                 segundoSelecionado = vingadorSelecionado;
@@ -212,9 +246,9 @@ let seleciona = function seleciona(oEvent){
                     mostrarMensagem("Você errou!", "errou");
                     tentativas++;
                     var resetaCartas = setTimeout(()=>{
-                        if(segundoSelecionado && botaoClicado.firstChild.src !="http://127.0.0.1:5500/imagens/interrogacao.jpg"){
-                            botaoClicado.firstChild.src = "imagens/interrogacao.jpg";
-                            primeiroBotao.firstChild.src = "imagens/interrogacao.jpg";
+                        if(segundoSelecionado && botaoClicado.firstChild.src !="http://127.0.0.1:5500/imagens/jogo/interrogacao.jpg"){
+                            botaoClicado.firstChild.src = "imagens/jogo/interrogacao.jpg";
+                            primeiroBotao.firstChild.src = "imagens/jogo/interrogacao.jpg";
                             primeiroSelecionado = null;
                             primeiroBotao = null;
                             segundoSelecionado = null;
@@ -241,7 +275,7 @@ for(i=0; i<random.length; i++){
     botao.disabled = true;
     let imagem = document.createElement("img");
     imagem.id = "vingador"+i;
-    imagem.src="imagens/interrogacao.jpg";
+    imagem.src="imagens/jogo/interrogacao.jpg";
     botao.classList.add("item");
     botao.onclick=seleciona;
    
@@ -250,7 +284,7 @@ for(i=0; i<random.length; i++){
     tela.appendChild(botao);
     
     vingador = document.getElementById("vingador"+i);
-    vingador.src="imagens/interrogacao.jpg";
+    vingador.src="imagens/jogo/interrogacao.jpg";
     vingador.parentElement.disabled = false;
 }
 
@@ -266,7 +300,7 @@ function inicio(){
         // let botao = document.createElement("button");
         let imagem = document.getElementById("vingador"+i);
         // imagem.id = "vingador"+i;
-        imagem.src="imagens/"+random[i].substring(0,random[i].length-1)+".jpg";
+        imagem.src="imagens/jogo/"+random[i].substring(0,random[i].length-1)+".jpg";
         // botao.classList.add("item");
         // botao.onclick=seleciona;
         // botao.disabled = true;
@@ -296,7 +330,7 @@ function inicio(){
         contador.style.visibility="hidden";
         for(i=0; i<random.length; i++){
             vingador = document.getElementById("vingador"+i);
-            vingador.src="imagens/interrogacao.jpg";
+            vingador.src="imagens/jogo/interrogacao.jpg";
             // vingador.parentElement.disabled = false; ?
         }
 

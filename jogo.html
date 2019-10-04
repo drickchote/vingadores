@@ -48,26 +48,35 @@
                     </div>
                     <div id="scoreButoes" class="flex">
                         <button onclick="novoJogo()">Novo Jogo</button>
-                        <button>Ver ranking</button>
+                        <button onclick="mostrarRanking()">Ver ranking</button>
                         <a href="index.html"><button>Sair</button></a>
                     </div>
                 </div>
                 <div id="modal" class="modal">
                     <div class="conteudoModal">
-                      <span class="modalClose">&times;</span>
-                      <table id="tableRanking">
-                          <tr>
-                              <th>Nome</th>
-                              <th>Tempo</th>
-                              <th>Taxa de acerto</th>
-                          </tr>
-                      </table>
+                        <span id="modalClose">&times;</span>
+                        <h1 id="rankingTitle">Ranking</h1>
+                        <table id="tableRanking">
+                            <thead>
+                            <tr id="rankingHead">
+                                <th>Posição</th>
+                                <th>Nome</th>
+                                <th>Tempo</th>
+                                <th>Taxa de acerto</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rankingBody">
+
+                        </tbody>
+                        </table>
+                        <button id="excluirRankingButton" onclick="excluirRanking()">Excluir Ranking</button>
                     </div>
                   
                   </div>
             </section>
         </div>
     <script src="jogo.js"></script>
+    <script src="modal.js"></script>
 
 	</body>
 </html>

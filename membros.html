@@ -10,7 +10,7 @@
 		</div>
 		<section id="corpo">
 			<h4> Membros </h4>
-			<table class="membros" align="center">
+			<table class="membros">
 				<tr > 
 					<th> Thor </th> 
 					<th> Homem de Ferro </th>
@@ -19,10 +19,11 @@
 					<th> Capitão América </th>
 				</tr>
 				<tr> 
-					<td> <img src="imagens/thor.jpg" alt="Thor" title="Thor" width="200" height="200" /> </td><td> <img src="imagens/homemdeferro.jpg" alt="Homem de Ferro" title="Homem de Ferro" width="200" height="200" /> </td>
-					<td><img src="imagens/viuva.jpg" alt="Viúva Negra" title="Viúva Negra" width="200" height="200" /></td> 
-					<td><img src="imagens/gaviao.jpg" alt="Gavião Arqueiro" title="Gavião Arqueiro" width="200" height="200" /></td> 
-					<td><img src="imagens/capitao.jpg" alt="Capitão América" title="Capitão América" width="200" height="200" /></td>
+					<td><img id="0" src="imagens/thor.jpg" alt="Thor" title="Thor" width="200" height="200" /> </td>
+					<td><img id="1" src="imagens/homemdeferro.jpg" alt="Homem de Ferro" title="Homem de Ferro" width="200" height="200" /> </td>
+					<td><img id="2"src="imagens/viuva.jpg" alt="Viúva Negra" title="Viúva Negra" width="200" height="200" /></td> 
+					<td><img id="3"src="imagens/gaviao.jpg" alt="Gavião Arqueiro" title="Gavião Arqueiro" width="200" height="200" /></td> 
+					<td><img id="4"src="imagens/capitao.jpg" alt="Capitão América" title="Capitão América" width="200" height="200" /></td>
 				</tr>
 								<tr> 
 					<th> Hulk </th> 
@@ -32,15 +33,27 @@
 					<th> Doutor Estranho </th>
 				</tr>
 				<tr> 
-					<td><img src="imagens/hulk.jpg" alt="Hulk" title="Hulk" width="200" height="200" /></td><td> <img src="imagens/feiticeira.jpg" alt="Feiticeira Escarlate" title="Feiticeira Escarlate" width="200" height="200" /> </td>
-					<td><img src="imagens/aranha.jpg" alt="Homem Aranha" title="Homem Aranha" width="200" height="200" /></td> 
-					<td><img src="imagens/capita.jpg" alt="Capitã Marvel" title="Capitã Marvel" width="200" height="200" /></td> 
-					<td><img src="imagens/dr.jpg" alt="Doutor Estranho" title="Doutor Estranho" width="200" height="200" /></td>
+					<td><img id="5"src="imagens/hulk.jpg" alt="Hulk" title="Hulk" width="200" height="200" /></td>
+					<td><img id="6" src="imagens/feiticeira.jpg" alt="Feiticeira Escarlate" title="Feiticeira Escarlate" width="200" height="200" /> </td>
+					<td><img id="7"src="imagens/aranha.jpg" alt="Homem Aranha" title="Homem Aranha" width="200" height="200" /></td> 
+					<td><img id="8"src="imagens/capita.jpg" alt="Capitã Marvel" title="Capitã Marvel" width="200" height="200" /></td> 
+					<td><img id="9"src="imagens/dr.jpg" alt="Doutor Estranho" title="Doutor Estranho" width="200" height="200" /></td>
 				</tr>
 
 			</table>
- 
+			<div id="modal" class="modal modal2">
+                    <div class="conteudoModal conteudoModal2">
+                        <span id="modalClose">&times;</span>
+                        <h1 id="nomeTitle"></h1>
+						<h4 id="caracteristica">Característica:</h4>
+						<h4 id="arma">Arma: </h4>
+						<h4 id="wiki">Wiki:<a> </a></h4>
+                    </div>
+                </div>
 		</section>
+		
+		<script src="modal.js"> </script>
+		<script src="membros.js"> </script>
 	</body>
 </html>
 
