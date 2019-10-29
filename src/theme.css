@@ -1,0 +1,332 @@
+html{
+	width: 100%;
+}
+ul { 
+	list-style-type: none;
+	margin: 0px; 
+	padding: 10px;
+	overflow: hidden; 
+
+}
+li {
+	font-size: 25pt; 
+	float: left; 
+	}                  /* Faz com que os blocos fiquem um ao lado do outro */
+li a { 
+	display: block; /* Faz com que todo o bloco seja um link */
+	text-decoration: none; /* Remove a aparência de link */
+	color: white; 
+	padding: 10px 20px;
+}
+li a:hover { 
+	background-color: white;
+ 	color: blue;
+}
+body{
+	margin: 10px 10px 10px 10px;
+	background-color: #1d225d;
+}
+header{
+	display: block;
+	height: 500px;
+	
+}
+.imagem{
+	height: 400px;
+	background-image: url(imagens/menu.jpg);
+	background-position: left bottom;
+	background-repeat: no-repeat;
+	background-size: contain;
+
+}
+#nav{
+	margin: 0px 0px 0px 10px;
+}
+#menu{
+	border: none;
+	display: inline;
+	height: 80px;
+	width: 100%;
+	position: relative;
+	top: 330px;
+}
+#tela{
+	display: flex;
+	justify-content: center;
+	background-color: #989cca;
+	flex-wrap: wrap;
+}
+#corpo{
+	display: block;
+	font-size: 18pt; 
+	background-color: #989cca;
+	position: relative;
+	top: 0px;
+}
+h4{
+	font-size: 30pt;
+	padding: 10px;
+	margin: 5px;
+}
+p{
+	margin: 15px;
+	position: relative;
+	bottom: 15px;
+}
+table { 
+	border-collapse: collapse;
+	}
+
+
+table.membros{
+	position: relative;
+	bottom: 15px;
+}
+table.membros th, td{ 
+	width: 250px;
+	border: 1px solid black; /* Config. da borda da tabela */
+	text-align: center; /* Alinhamento da tabela */
+}
+table.membros tr:nth-child(odd){ 
+	background-color: #1d225d; 
+	color: white;
+	font-size: 15pt; 
+	}
+table.filmes{
+	margin: 15px 15px 0px 15px;
+	position: relative;
+	bottom: 15px;
+}
+table.filmes th, td{
+	border: 1px solid black; /* Config. da borda da tabela */
+}
+table.filmes th{
+	background-color: #1d225d; 
+	color: white;
+}
+.filme{
+	width: 10%;
+}
+.descricao{
+	width: 50%;
+}
+img{
+	max-width: 100%;
+}
+iframe{
+	max-width: 100%;
+}
+.loc{	
+	position: relative;
+	left: 20px;
+	bottom: 15px;
+	
+}
+.noticias{
+	max-width: 100%;
+	width: 96%;
+	position: relative;
+	left: 20px;
+}
+
+
+.item img{
+	width: 170px;
+	height: 170px;
+}
+
+
+.container{
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	border-radius: 10px;
+}
+
+#contador{
+	font-size: 100px;
+	position: fixed;
+	left: 30%;
+	top: 50%;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	width: 520px;
+	color: #FFF;
+}
+
+#nomeJogador{
+	color: #fff;
+}
+#informacoes{
+	color: #fff;
+	margin-left: 20px;
+	width:100%;
+	display: flex;
+	justify-content: center;
+}
+h4{
+
+	margin-left: 30px;
+	margin-right: 30px;
+	font-size: 30px
+}
+
+#insercaoNome{
+	position: fixed;
+	margin-right: auto;
+	margin-left: auto;
+	top: 30%;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	width: 50%;
+	height: 300px;
+	color: #FFF;
+	border-radius: 10px;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+
+#insercaoNome input{
+	border-radius: 5px;
+	width: 60%;
+	height: 20px;
+}
+
+#caixaMensagem{
+	position: fixed;
+	margin-left: auto;
+	margin-right: auto;
+	top: 80%;
+	width: auto;
+	height: auto;
+	background: #00FF00;
+	border-radius: 10px;
+	text-align: center;
+	opacity: 1;
+	padding: 15px;
+	display: none;
+	font-size: 30px;
+}
+
+#score{
+	position: fixed;
+	margin-right: auto;
+	margin-left: auto;
+	top: 10%;
+	text-align: center;
+	margin: 0;
+	padding: 10px;
+	width: 50%;
+	height: auto;
+	color: #FFF;
+	background:rgb(89, 197, 89);
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	display	: flex;
+}
+
+#scoreButoes{
+	justify-content: space-between;
+	width: 100%;
+}
+#scoreButoes button{
+	margin-left: 10px;
+	margin-right: 10px;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+#score div{
+	justify-content: center;
+}
+
+#score h4{
+	color: black;
+}
+
+#ranking{
+	padding: 10px;
+	height: auto;
+	min-width: auto;
+	position: fixed;
+	left: 10px;
+	top: 90vh;
+	font-size: 25px;
+	border-radius: 10px;
+}
+
+.modal {
+	display: none;; 
+	position: fixed; 
+	top: 0;
+	z-index: 1; 
+	width: 100%; 
+	height: 100%; 
+	overflow: auto; 
+	background-color: rgb(0,0,0); 
+	background-color: rgba(0,0,0,0.4);
+
+  }
+
+  .conteudoModal {
+	background: #666;
+	background-size: 100%;
+	color: #FFF;
+	margin: 15% auto;
+	border: 1px solid #888;
+	width: 50%;
+	height: 50%; 
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+  }
+
+ 
+
+  .close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+  }
+  
+  #modalClose:hover,
+  #modalClose:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+  }
+
+  #rankingTitle{
+	  text-align: center;
+  }
+
+  #excluirRankingButton{
+	text-align: center;
+	margin: 50px auto 0 auto;
+	border-radius: 10px;
+	background: lightblue;
+	padding: 10px;
+  }
+
+  .modal2{
+	  width: 100%;
+	  height: 100vh;
+  }
+
+  .modal h1{
+	width: 100%;
+	text-align: center;
+}
+
+  .conteudoModal2{
+	width: 70%;
+	overflow: hidden;
+  }
